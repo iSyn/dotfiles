@@ -1,0 +1,4 @@
+# herdr runtime state - logs, sessions and sockets, not config
+home/.config/herdr/*.log
+home/.config/herdr/*.sock
+home/.config/herdr/session.json
