@@ -31,6 +31,7 @@ in
     shellAliases = {
       cc = "claude --dangerously-skip-permissions";
       co = "codex --full-auto";
+      lg = "lazygit";
     };
   };
 
