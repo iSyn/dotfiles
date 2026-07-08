@@ -21,6 +21,18 @@ in
     nerd-fonts.hack
   ];
 
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;      # ghost text from history
+    syntaxHighlighting.enable = true;  # commands turn green when valid
+    initContent = ''
+      bindkey '^f' autosuggest-accept
+    '';
+    shellAliases = {
+      cc = "claude --dangerously-skip-permissions";
+    };
+  };
+
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
 
