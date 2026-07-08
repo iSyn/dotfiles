@@ -8,6 +8,9 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   system.primaryUser = "synclairwang";
+  users.users.synclairwang = {
+    home = "/Users/synclairwang";
+  };
   system.stateVersion = 6;
 
   system.defaults = {
