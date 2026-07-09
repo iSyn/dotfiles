@@ -1,14 +1,5 @@
 return {
   {
-    'stevearc/oil.nvim',
-    lazy = false,  -- load at startup so oil (not netrw) owns directory buffers
-    opts = {
-      default_file_explorer = true,  -- take over directory buffers, disable netrw
-      view_options = { show_hidden = true },
-    },
-    keys = { { '<leader>e', '<cmd>Oil<cr>', desc = 'File Browser' } },
-  },
-  {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
@@ -18,8 +9,8 @@ return {
       input = { enabled = true },
     },
     keys = {
-      { '<leader>f', function() Snacks.picker.files() end, desc = 'Find Files' },
-      { '<leader>s', function() Snacks.picker.grep() end,  desc = 'Search Text' },
+      { '<leader>f', function() Snacks.picker.files({ hidden = true }) end, desc = 'Find Files' },
+      { '<leader>s', function() Snacks.picker.grep({ hidden = true }) end,  desc = 'Search Text' },
       { '<leader>b', function() Snacks.picker.buffers() end, desc = 'Buffers' },
       { 'gd', function() Snacks.picker.lsp_definitions() end, desc = 'Goto Definition' },
     },
