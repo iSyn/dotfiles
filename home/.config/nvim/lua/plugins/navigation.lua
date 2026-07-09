@@ -1,7 +1,11 @@
 return {
   {
     'stevearc/oil.nvim',
-    opts = { view_options = { show_hidden = true } },
+    lazy = false,  -- load at startup so oil (not netrw) owns directory buffers
+    opts = {
+      default_file_explorer = true,  -- take over directory buffers, disable netrw
+      view_options = { show_hidden = true },
+    },
     keys = { { '<leader>e', '<cmd>Oil<cr>', desc = 'File Browser' } },
   },
   {

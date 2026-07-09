@@ -17,7 +17,8 @@ in
     jq        # json on the command line
     lazygit
     neovim
-    # the font everything renders in
+    nodejs_24 # node + npm (current active LTS)
+    pnpm      # fast, disk-efficient package manager (used by work repos)
     nerd-fonts.hack
   ];
 
@@ -29,7 +30,7 @@ in
       bindkey '^f' autosuggest-accept
     '';
     shellAliases = {
-      cc = "claude --dangerously-skip-permissions";
+      cc = "claude"; 
       co = "codex --full-auto";
       lg = "lazygit";
     };
@@ -39,7 +40,7 @@ in
     enable = true;
     settings = {
       add_newline = false;
-      format = "$directory$git_branch$git_status$cmd_duration$line_break$character";
+      format = "$directory$git_branch$git_status$line_break$character";
       character = {
         success_symbol = "[❯](purple)";
         error_symbol = "[❯](red)";
