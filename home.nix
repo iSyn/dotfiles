@@ -17,9 +17,26 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    tree-sitter # CLI required by nvim-treesitter (main branch) to build parsers
     nodejs_24 # node + npm (current active LTS)
     pnpm      # fast, disk-efficient package manager (used by work repos)
     nerd-fonts.hack
+
+    # language servers (consumed by nvim-lspconfig; installed via nix so
+    # `./rebuild` gives the identical toolchain on every machine)
+    lua-language-server            # lua_ls  - neovim config
+    nixd                           # nixd    - nix files (flake/home/configuration)
+    typescript                     # tsc     - required by ts_ls for standalone files
+    typescript-language-server     # ts_ls   - typescript / javascript / jsx / tsx
+    bash-language-server           # bashls  - shell scripts
+    vscode-langservers-extracted   # jsonls, cssls, html, eslint (bundled)
+    yaml-language-server           # yamlls  - yaml
+    tailwindcss-language-server    # tailwindcss - class autocomplete
+    emmet-language-server          # emmet_language_server - jsx/html expansion
+    # formatters (consumed by conform.nvim for format-on-save)
+    prettierd                      # js/ts/jsx/tsx/json/css/html/yaml/markdown
+    stylua                         # lua
+    nixfmt-rfc-style               # nix (provides the `nixfmt` binary)
   ];
 
   programs.zsh = {
