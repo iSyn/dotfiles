@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.opt.scrolloff = 16
+vim.o.winborder = "rounded"
