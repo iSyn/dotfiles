@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(timeout 120 nix eval --raw nixpkgs#zsh-fzf-tab.outPath)",
-      "Bash(nix eval *)",
-      "Bash(ls \"$\\(nix eval --raw nixpkgs#zsh-fzf-tab.outPath 2>/dev/null\\)/share/fzf-tab/\")"
-    ]
-  }
-}

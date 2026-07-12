@@ -17,6 +17,7 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    gh        # github cli
     tree-sitter # CLI required by nvim-treesitter (main branch) to build parsers
     nodejs_24 # node + npm (current active LTS)
     pnpm      # fast, disk-efficient package manager (used by work repos)
@@ -78,6 +79,8 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
   home.file.".claude/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
+  home.file.".claude/skills".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/skills";
 
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
