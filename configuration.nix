@@ -46,7 +46,7 @@
       "claude-code"
       "codex"
       "google-cloud-sdk"
-      "opensuperwhisper"
+      "wispr-flow"
     ];
   };
 }
