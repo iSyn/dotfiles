@@ -3,8 +3,8 @@ return {
   opts = {
     picker = {
       sources = {
-        explorer = { hidden = true },
-        files = { hidden = true },
+        explorer = { hidden = true, ignored = true, exclude = { "node_modules", ".git" } },
+        files = { hidden = true, ignored = true, exclude = { "node_modules", ".git" } },
       },
     },
   },
