@@ -10,4 +10,4 @@ Run typechecking regularly, single test files regularly, and the full test suite
 
 Once done, use /code-review to review the work.
 
-Commit your work to the current branch.
+Commit your work to the current branch in small, logical increments as each piece is completed - not one large commit at the end.
