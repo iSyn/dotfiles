@@ -40,13 +40,14 @@
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "herdr"
+      "opencode"
     ];
     casks = [
       "wezterm"
       "claude-code"
       "codex"
       "google-cloud-sdk"
-      "wispr-flow"
+      "handy"
     ];
   };
 }
