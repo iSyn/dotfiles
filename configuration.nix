@@ -45,7 +45,6 @@
     casks = [
       "wezterm"
       "claude-code"
-      "codex"
       "google-cloud-sdk"
       "handy"
     ];

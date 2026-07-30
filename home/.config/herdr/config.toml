@@ -4,6 +4,26 @@ onboarding = false
 name = "rose-pine"
 auto_switch = false
 
+[keys]
+settings = ""
+goto = "prefix+s"
+
 [ui]
 agent_panel_sort = "spaces"
 show_agent_labels_on_pane_borders = false
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "run lazygit"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "open scratch terminal"
+width = "90%"
+height = "90%"
