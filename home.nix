@@ -56,11 +56,11 @@ in
       cc = "claude";
       oc = "opencode --auto";
       lg = "lazygit";
-      gs = "git switch"
-      ga = "git add"
-      gc = "git commit"
-      gp = "git pull"
-      gP = "git push"
+      gs = "git switch";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git pull";
+      gP = "git push";
     };
   };
 
