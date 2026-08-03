@@ -10,9 +10,17 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Pin Homebrew itself ahead of nix-homebrew's default (6.0.1) so tap
+    # formulae using newer DSL steps (e.g. set_permissions) can install.
+    homebrew-brew = {
+      url = "github:Homebrew/brew/6.0.14";
+      flake = false;
+    };
+    nix-homebrew.inputs.brew-src.follows = "homebrew-brew";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }: {
     darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
       modules = [
         ./configuration.nix

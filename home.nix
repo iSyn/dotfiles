@@ -106,8 +106,13 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
   home.file.".claude/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
+  # Vendor-neutral skills hub (opencode, codex, cursor, gemini read it natively).
+  # Claude Code is the holdout that only reads ~/.claude/skills, so it gets a
+  # compat symlink to the same bundle.
+  home.file.".agents/skills".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.agents/skills";
   home.file.".claude/skills".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/skills";
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.agents/skills";
 
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
