@@ -51,6 +51,11 @@ in
     syntaxHighlighting.enable = true; # commands turn green when valid
     initContent = ''
       bindkey '^f' autosuggest-accept
+
+      # Prefer the Nix-managed toolchain over Homebrew on PATH. Homebrew's node
+      # exists only as an `opencode` dependency and would otherwise shadow our
+      # declared Nix node (see home.packages: nodejs_24) for `node`/`npm`.
+      export PATH="/etc/profiles/per-user/${config.home.username}/bin:$PATH"
     '';
     shellAliases = {
       cc = "claude";

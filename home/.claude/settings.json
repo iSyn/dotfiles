@@ -25,5 +25,6 @@
   "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "model": "claude-fable-5[1m]"
 }

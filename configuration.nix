@@ -41,6 +41,11 @@
     brews = [
       "herdr"
       "opencode"
+      "flashspace"
+      # opencode's node links against Homebrew openssl@3, which reads its trusted
+      # CA roots from this formula. Declared explicitly so `cleanup = "zap"` keeps
+      # it (its cert links were previously stripped, breaking all node TLS).
+      "ca-certificates"
     ];
     casks = [
       "wezterm"
