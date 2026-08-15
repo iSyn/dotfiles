@@ -40,6 +40,7 @@
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "herdr"
+      "nvm"
       "opencode"
       # opencode's node links against Homebrew openssl@3, which reads its trusted
       # CA roots from this formula. Declared explicitly so `cleanup = "zap"` keeps
@@ -49,7 +50,7 @@
     casks = [
       "wezterm"
       "flashspace"
-      "claude-code"
+      "claude-code@latest"
       "google-cloud-sdk"
       "handy"
     ];

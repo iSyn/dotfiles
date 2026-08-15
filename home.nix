@@ -24,7 +24,6 @@ in
     neovim
     gh # github cli
     tree-sitter # CLI required by nvim-treesitter (main branch) to build parsers
-    nodejs_24 # node + npm (current active LTS)
     pnpm # fast, disk-efficient package manager (used by work repos)
     nerd-fonts.hack
 
@@ -52,10 +51,16 @@ in
     initContent = ''
       bindkey '^f' autosuggest-accept
 
-      # Prefer the Nix-managed toolchain over Homebrew on PATH. Homebrew's node
-      # exists only as an `opencode` dependency and would otherwise shadow our
-      # declared Nix node (see home.packages: nodejs_24) for `node`/`npm`.
+      # Keep declarative Nix tools ahead of Homebrew. NVM then prepends the
+      # selected Node version when a default or project version is active.
       export PATH="/etc/profiles/per-user/${config.home.username}/bin:$PATH"
+
+      if [[ -s /opt/homebrew/opt/nvm/nvm.sh ]]; then
+        source /opt/homebrew/opt/nvm/nvm.sh
+      fi
+      if [[ -s /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm ]]; then
+        source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
+      fi
     '';
     shellAliases = {
       cc = "claude";
@@ -83,7 +88,11 @@ in
   };
 
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    NVM_DIR = "${config.home.homeDirectory}/.nvm";
+  };
+  home.file.".nvm/.keep".text = "";
 
   home.activation.handySettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     settings_dir="$HOME/Library/Application Support/com.pais.handy"
