@@ -20,13 +20,23 @@ Every incoming request takes one of two lanes. Choose before doing anything else
 
 Say which lane you took. When you opened a worktree, name it and say what it was asked to do - that line is the user's index into where the work went.
 
+## Harness
+
+Every job needs a harness to run in: opencode or claude code. Check the invocation first - `oc` or `opencode` means opencode, `cc` or `claude code` means claude code, either settles it silently and no question is asked. Only when neither is present, ask: "opencode or claude code?" - if the user doesn't answer, default to opencode.
+
 ## The worktree
 
 Name the job first: a short kebab slug of its scope, matching `[a-z][a-z0-9_-]{0,31}` - `auth-token-refresh`, not `task-2`. That one slug becomes the branch, the workspace label, and the agent name, so the sidebar, the git log, and this conversation all say the same word.
 
 Create it scoped to **this** repo with `--cwd "$PWD"`. Omitting that targets whatever workspace the UI happens to be focused on, which may be another repo entirely. Base the branch on the current `HEAD` unless the user names a base, so a job starts from whatever the desk is standing on. Pass `--no-focus`.
 
-Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Use the same agent kind as this session unless the user names another.
+Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Start it under the harness settled in Harness above.
+
+Every brief carries the same closing instructions, on top of the task itself:
+
+- **Linear.** If the job traces to a Linear ticket, move it to "In Progress" on start, and to the appropriate in-review/done status once the PR is open.
+- **Dev server.** Before calling the job finished, start a dev server in the worktree (backgrounded, not blocking) so the user can click through and validate the fix themselves before merging.
+- **PR.** Once the change is verified, push the branch, open a PR, and open its URL in the user's browser (`open <url>` on macOS).
 
 Two rules make the handoff clean:
 
@@ -41,4 +51,4 @@ A follow-up or fresh idea for a job already in flight goes straight to that agen
 
 Herdr's own `done` state is the completion signal, so let it do that job: no progress reports, no announcing finished work, no pasting results into this thread. When the user asks what is outstanding, read live state through the CLI and answer in one line per job - CLI reads leave the unseen-work signal intact, so checking never costs the user their `done` badge.
 
-Landing and cleanup are the user's call. Merging a branch or removing a worktree happens when they ask for it, on the job they name.
+Opening the PR is part of finishing the job, not landing it - the agent does that on its own. Landing and cleanup stay the user's call: merging a branch or removing a worktree happens when they ask for it, on the job they name.
