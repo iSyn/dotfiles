@@ -39,6 +39,7 @@ Every brief carries the same closing instructions, on top of the task itself:
 - **Linear.** If the job traces to a Linear ticket, move it to "In Progress" on start, and to the appropriate in-review/done status once the PR is open.
 - **Dev server.** Before calling the job finished, start a dev server in the worktree (backgrounded, not blocking) so the user can click through and validate the fix themselves before merging.
 - **PR.** Once the change is verified, push the branch, open a PR, and open its URL in the user's browser (`open <url>` on macOS).
+- **Handoff.** With the PR open and the dev server running, ask the user in that workspace whether everything looks good. On yes: merge the PR, stop the dev server, and delete the worktree. On anything else, leave all three standing and keep working from the feedback.
 
 Two rules make the handoff clean:
 
@@ -53,4 +54,4 @@ A follow-up or fresh idea for a job already in flight goes straight to that agen
 
 Herdr's own `done` state is the completion signal, so let it do that job: no progress reports, no announcing finished work, no pasting results into this thread. When the user asks what is outstanding, read live state through the CLI and answer in one line per job - CLI reads leave the unseen-work signal intact, so checking never costs the user their `done` badge.
 
-Opening the PR is part of finishing the job, not landing it - the agent does that on its own. Landing and cleanup stay the user's call: merging a branch or removing a worktree happens when they ask for it, on the job they name.
+Opening the PR is part of finishing the job, not landing it. Landing follows the handoff confirmation in that job's own workspace: once its user says the change looks good, the agent merges the PR, stops the dev server, and deletes the worktree itself - the desk does none of that from here. Until a job reaches that point, or if the user says no, landing and cleanup stay manual: merging a branch or removing a worktree otherwise happens only when the user asks for it, on the job they name.
