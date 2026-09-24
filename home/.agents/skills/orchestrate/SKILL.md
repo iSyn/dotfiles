@@ -39,14 +39,15 @@ Every brief carries the same closing instructions, on top of the task itself:
 - **Linear.** If the job traces to a Linear ticket, move it to "In Progress" on start, and to the appropriate in-review/done status once the PR is open.
 - **Dev server.** Before calling the job finished, start a dev server in the worktree (backgrounded, not blocking) so the user can click through and validate the fix themselves before merging.
 - **PR.** Once the change is verified, push the branch and open a PR. Do not open its URL yourself - it goes into the handoff message instead.
-- **Handoff.** Send a message that always carries both links, clickable, in this form:
+- **Handoff.** Send a message that always carries the merge direction and both links, clickable, in this form:
 
   ```
+  Merging: <base-branch> <- <job-branch>
   PR link: [<pr-url>](<pr-url>)
   Dev server: [<dev-server-url>](<dev-server-url>)
   ```
 
-  Then ask whether everything looks good. On yes: merge the PR, stop the dev server, close any headless chrome browsers opened for the task, delete the worktree, and close its Herdr workspace. On anything else, leave all of it standing and keep working from the feedback.
+  Then ask whether everything looks good. On yes, in order: merge the PR, stop the dev server, close any headless chrome browsers opened for the task, delete the worktree, then close its Herdr workspace. On anything else, leave all of it standing and keep working from the feedback.
 
 Two rules make the handoff clean:
 
