@@ -10,6 +10,12 @@ Isolation is the point. Jobs on separate branches cannot collide, so any number 
 
 Consult `/herdr` for mechanics, read `herdr worktree` and `herdr agent` for authoritative flags, and take every id from the JSON responses rather than predicting it. Before dispatching, confirm `HERDR_ENV=1`; if it is unset, say you are not running inside Herdr and stop.
 
+## Opening the desk
+
+Settle the harness before anything else - every job needs one to run in, opencode or claude code. Check the invocation first: `oc` or `opencode` means opencode, `cc` or `claude code` means claude code, either settles it silently. Only when neither is present, ask "opencode or claude code?" - if the user doesn't answer, default to opencode.
+
+Once it's settled, say so in one line, e.g. `Ready to orchestrate. harness: opencode.` - that's the cue that the desk is open and later messages will be triaged as jobs, not answered as one-off questions. If the invocation already carried a job, settle the harness, give that line, then triage the job in the same turn.
+
 ## Triage
 
 Every incoming request takes one of two lanes. Choose before doing anything else.
@@ -20,17 +26,13 @@ Every incoming request takes one of two lanes. Choose before doing anything else
 
 Say which lane you took. When you opened a worktree, name it and say what it was asked to do - that line is the user's index into where the work went.
 
-## Harness
-
-Every job needs a harness to run in: opencode or claude code. Check the invocation first - `oc` or `opencode` means opencode, `cc` or `claude code` means claude code, either settles it silently and no question is asked. Only when neither is present, ask: "opencode or claude code?" - if the user doesn't answer, default to opencode.
-
 ## The worktree
 
 Name the job first: a short kebab slug of its scope, matching `[a-z][a-z0-9_-]{0,31}` - `auth-token-refresh`, not `task-2`. That one slug becomes the branch, the workspace label, and the agent name, so the sidebar, the git log, and this conversation all say the same word.
 
 Create it scoped to **this** repo with `--cwd "$PWD"`. Omitting that targets whatever workspace the UI happens to be focused on, which may be another repo entirely. Base the branch on the current `HEAD` unless the user names a base, so a job starts from whatever the desk is standing on. Pass `--no-focus`.
 
-Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Start it under the harness settled in Harness above.
+Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Start it under the harness settled when the desk opened.
 
 Every brief carries the same closing instructions, on top of the task itself:
 
