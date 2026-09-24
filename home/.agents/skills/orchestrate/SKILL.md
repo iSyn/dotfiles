@@ -32,7 +32,7 @@ Name the job first: a short kebab slug of its scope, matching `[a-z][a-z0-9_-]{0
 
 Create it scoped to **this** repo with `--cwd "$PWD"`. Omitting that targets whatever workspace the UI happens to be focused on, which may be another repo entirely. Base the branch on the current `HEAD` unless the user names a base, so a job starts from whatever the desk is standing on. Pass `--no-focus`.
 
-Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Start it under the harness settled when the desk opened.
+Then start an agent in the new workspace's root pane, named with the same slug, and prompt it with a brief written for someone who holds none of this conversation. Its working directory is the **worktree's** path from the create response, not the desk's. Start it under the harness settled when the desk opened. When that harness is opencode, pass `--auto` (`herdr agent start ... --kind opencode --pane <id> -- --auto`) so the dispatched agent runs unattended instead of stalling on a permission prompt.
 
 Every brief carries the same closing instructions, on top of the task itself:
 
