@@ -16,7 +16,10 @@ Settle the harness before anything else - every job needs one to run in, opencod
 
 Once it's settled, say so in one line, e.g. `Ready to orchestrate. harness: opencode.` - that's the cue that the dispatcher is open and later messages will be triaged as jobs, not answered as one-off questions. If the invocation already carried a job, settle the harness, give that line, then triage the job in the same turn.
 
-Name this pane too, once, right after harness resolution: `herdr agent rename "$HERDR_PANE_ID" dispatch-<repo-slug>`, using this repo's directory name as `<repo-slug>`. Nothing sends to that name - it is there so the sidebar tells the dispatcher apart from the jobs dispatched from it.
+Name this pane and its workspace too, once, right after harness resolution, so the sidebar tells the dispatcher apart from the jobs dispatched from it. Nothing sends to either name. Take `<repo-slug>` from `worktree.repo_name` in `herdr workspace get "$HERDR_WORKSPACE_ID"` - started from a linked worktree, the directory name would be the worktree's, not the repo's - and fall back to this directory's name only when the workspace has no `worktree`.
+
+- `herdr agent rename "$HERDR_PANE_ID" dispatch-<repo-slug>`
+- `herdr workspace rename "$HERDR_WORKSPACE_ID" "<repo-slug> - orchestration"`, but only while the workspace still carries Herdr's default label - the repo name or this directory's name. Any other label was set by the user on purpose; leave it.
 
 ## Triage
 
